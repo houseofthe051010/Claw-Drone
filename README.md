@@ -1,5 +1,7 @@
 # Claw Drone
 
+![Claw Drone](https://cdn.hackclub.com/019f14cf-6d57-7323-a0e8-c7fb3de276a7/Screenshot%202026-06-29%20151536.png)
+
 Claw Drone is a custom payload quadcopter built to fly, carry, and manipulate
 objects with four continuous-rotation claw servos. Its handheld controller
 combines two joysticks, dedicated trim controls, a TFT dashboard, and direct
@@ -10,6 +12,16 @@ generates all four servo PWM signals.
 This repository contains the mechanical CAD and the complete custom firmware
 for the controller and aircraft. The flight controller runs standard
 Betaflight, so the upstream Betaflight source is not duplicated here.
+
+The project began as an attempt to make an inexpensive drone around an ESP32
+flight controller and low-cost ESCs. After several prototypes and failed
+flight tests, the flight-critical controls moved to a conventional Betaflight
+stack. The experimental parts—the four-leg claw, ESP-NOW radio link, CRSF
+bridge, telemetry, and custom transmitter—remained custom-built.
+
+## Demo
+
+[Watch the competition flight demo on YouTube](https://youtube.com/shorts/Rw3jiggKQBY)
 
 ## System architecture
 
@@ -51,6 +63,99 @@ Code/
 ```
 
 See [Code/README.md](Code/README.md) for build entry points.
+
+## Design and build process
+
+### 1. Early arm concepts
+
+The first design was a normal X-frame carrying a five-degree-of-freedom arm.
+That approach was rejected because the arm would be too heavy for the target
+airframe.
+
+The next concept moved the electronics toward the frame perimeter and left an
+opening in the center. A servo-driven rope and spring system would tighten
+around an object through that opening. A printed prototype exposed two major
+problems:
+
+- The gripper sat too close to the airframe and would only work when the drone
+  was almost touching the object.
+- Frame members and claw parts obstructed the propeller downwash, reducing
+  thrust, efficiency, and flight time.
+
+### 2. Lightweight claw redesign
+
+The project returned to a conventional 5-inch X-frame and a lightweight claw
+mounted beneath it. The final mechanism uses four symmetrically arranged
+continuous-rotation servos and long claw legs with cup-shaped ends. This gives
+the gripper a large capture area without the mass of a multi-axis robotic arm.
+
+![Early claw prototype](https://cdn.hackclub.com/019ec355-8233-7346-a96f-261aa930281d/Screenshot%202026-06-13%20193231.png)
+
+![Redesigned claw CAD](https://cdn.hackclub.com/019ec35d-74e1-70d2-9615-82af2e30d687/image.png)
+
+### 3. ESP32 flight-controller experiment
+
+The original flight-controller prototype used an ESP32-S3 SuperMini and a
+BMI160 IMU over SPI. The sensor was mounted, soldered, and calibrated while
+testing ESP-FC and Betaflight-compatible configuration tools.
+
+A 4-in-1 ESC would not initialize reliably from the ESP32 using DSHOT,
+ONESHOT, or PWM despite multiple wiring and pin-assignment changes. One ESP32
+also failed during ESC testing, possibly because of an electrical fault on the
+ESC signal connection.
+
+Four inexpensive individual ESCs were tested next. They armed and spun the
+motors, but their approximately 50 Hz update rate was too slow for stable
+control of a responsive 5-inch quadcopter. Takeoff attempts repeatedly tipped
+or crashed the aircraft and broke propellers while PID tuning was attempted.
+
+![ESP32 and ESC development](https://cdn.hackclub.com/019ecc0f-3c6b-7371-a2ad-fd34ee2507ea/image.png)
+
+### 4. Moving flight control to Betaflight
+
+The experimental ESP32 flight controller and slow ESCs were replaced by the
+Aero Selfie F405 and 45 A ESC stack documented below. This made the
+flight-critical system substantially more robust while leaving the payload,
+receiver bridge, telemetry, and transmitter open for experimentation.
+
+![Flight-controller stack](https://cdn.hackclub.com/019ed383-7922-7b6d-8e36-17c1cc8e7390/image.png)
+
+### 5. Temporary browser controller
+
+Before the handheld transmitter was complete, an ESP32 receiver connected to
+the flight controller over UART was tested using a temporary ESP32 web server.
+Two virtual joysticks in a phone browser proved that the airframe and receiver
+interface worked. Wi-Fi and video latency made this unsuitable as the final
+control system, but the test validated the basic aircraft.
+
+The temporary test interface drew on
+[cifertech/ESP32-Drone](https://github.com/cifertech/ESP32-Drone).
+
+### 6. Building the custom transmitter
+
+NRF24L01 modules were considered first. A 100 µF decoupling capacitor improved
+their power stability, but the link remained unreliable, so the final system
+moved to ESP-NOW Long Range with external antennas.
+
+The transmitter enclosure was designed around joystick spacing, reachable
+controls, clean wiring, and expansion room. A Raspberry Pi Pico handles the
+physical controls while the ESP32 handles the TFT, ESP-NOW link, telemetry,
+web controls, and external UART.
+
+![Transmitter wiring](https://cdn.hackclub.com/019f1057-e119-775f-ac5c-63eac06e99c7/image.png)
+
+![Completed transmitter](https://cdn.hackclub.com/019f1058-59bb-790c-9c65-282e0644dde1/image.png)
+
+### 7. Final assembly
+
+The claw servos, XL4005 regulator, receiver, camera hardware, and printed
+mounts were fitted to the 5-inch frame. The payload servos stayed on the drone
+ESP32 instead of the flight-controller outputs, keeping the claw independent
+from the timing-critical motor control path.
+
+![Final electronics assembly](https://cdn.hackclub.com/019f148b-7dcf-7bab-8370-dddf9c211c3d/image.png)
+
+![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
 
 ## Controller pinout
 
@@ -330,6 +435,77 @@ controller TFT over ESP-NOW.
 5. Move the spring-centered throttle upward to increase and release it to hold.
 6. Press GP1 at any time to request disarm and reset throttle to zero.
 
+## Competition results
+
+The drone flew at the competition, but the claw was difficult to position and
+the custom transmitter made precise pickup control harder than expected. The
+mechanism worked as a prototype, but it was not competitive in its first
+event.
+
+The build still validated several parts of the design:
+
+- A custom ESP-NOW transmitter can control Betaflight through an
+  ESP32-to-CRSF bridge.
+- CRSF battery telemetry can make the return trip to a custom controller.
+- The Pico/ESP32 handheld controller is reusable for other robotics projects.
+- A lightweight four-leg claw can be integrated into a 5-inch airframe.
+- Keeping experimental payload controls separate from flight-critical control
+  improves reliability.
+- Stable flight alone is not enough for precise aerial object pickup; pilot
+  ergonomics, latency, visibility, and mechanism geometry must be tested
+  together.
+
+## Problems and lessons learned
+
+### ESC protocol and update rate matter
+
+The first individual ESCs accepted only approximately 50 Hz control updates.
+That was not suitable for a responsive 5-inch quadcopter. The F405/45 A stack
+with an appropriate motor protocol was a much better flight platform.
+
+### Flight controllers are safety-critical
+
+A basic controller can be made to read an IMU and calculate PID output, but a
+reliable flight controller also needs filtering, vibration management,
+deterministic timing, calibration, failsafes, and fault handling. Moving those
+responsibilities to Betaflight allowed the custom work to focus on the radio,
+telemetry, controller, and payload.
+
+### Power integrity matters
+
+The NRF24L01 tests were sensitive to supply noise, and an ESP32 failed during
+ESC development. Future versions should use independently regulated rails,
+local decoupling, deliberate grounding, and protection between high-power and
+logic systems.
+
+### Prototype the full interaction
+
+The claw had a large capture area, but positioning the aircraft accurately
+enough to use it was the harder problem. Mechanical pickup tests should be
+performed early with realistic transmitter ergonomics, camera latency, and
+pilot visibility.
+
+### Reliability beats feature count
+
+Cosmetic button caps and unused LEDs were left off the first transmitter so
+the dependable control path could be finished before the competition. That
+was the correct tradeoff under the deadline.
+
+## Future improvements
+
+- Improve the claw geometry, grip strength, and payload retention.
+- Add wheels so the vehicle can drive near an object before attempting pickup.
+- Improve transmitter ergonomics with shoulder and trigger controls.
+- Add button caps and a cleaner internal wiring harness.
+- Use a lower-latency camera and control link.
+- Add clearer link-quality and failsafe indications.
+- Use protected, independently regulated rails for logic, servos, and video.
+- Match all four motors instead of relying on Betaflight to compensate for a
+  mixed-KV set.
+- Perform structured hover, pickup, endurance, payload, and range tests.
+- Evaluate a Pixhawk-compatible open flight controller for future autonomous
+  or out-of-line-of-sight experiments.
+
 ## Installing firmware
 
 ### Pico
@@ -382,3 +558,18 @@ correct devices.
 - Check the mixed-KV motor temperatures after every initial hover test.
 - Treat the TFT `ARM COMMAND` indicator as the requested state, not proof that
   Betaflight accepted the arm request.
+
+## Credits and project history
+
+- Temporary browser-controller reference:
+  [cifertech/ESP32-Drone](https://github.com/cifertech/ESP32-Drone)
+- Early flight-controller experiment:
+  [ESP-FC](https://github.com/rtlopez/esp-fc)
+- AI assistance was used to study the CRSF protocol and help with its initial
+  ESP32 implementation. The hardware integration, firmware adaptation,
+  testing, troubleshooting, and mechanical design were completed as part of
+  this project.
+
+The first complete build was developed over roughly 32 logged hours in June
+2026. The build journal and additional photos are available on the
+[Macondo project page](https://macondo.hackclub.com/projects/9527).
