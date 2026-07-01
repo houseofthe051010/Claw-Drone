@@ -1,6 +1,5 @@
 # Firmware
 
-This directory contains the complete custom control stack.
 
 ```text
 controller/
@@ -21,7 +20,4 @@ Both ESP32 projects use ESP-IDF through PlatformIO and include their own
 `platformio.ini`, CMake files, and `sdkconfig.defaults`. The Pico programs use
 MicroPython.
 
-Build and wiring instructions are in the repository
-[README](../README.md). Project-specific implementation notes are alongside
-each firmware project.
 
