@@ -29,7 +29,7 @@ bridge, telemetry, and custom transmitter – are still custom.
 Joysticks and buttons
         |
         v
-Raspberry Pi Pico -- UART 115200 --> Controller ESP32-WROOM
+Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
                                            |
                                            | ESP-NOW LR, channel 6
                                            v
@@ -46,6 +46,22 @@ Raspberry Pi Pico -- UART 115200 --> Controller ESP32-WROOM
 The controller ESP32 manages the 320x240 TFT dashboard and hosts the Wi-Fi
 servo-control web page. The drone ESP32 sends CRSF battery telemetry to the
 controller via the same ESP-NOW connection.
+
+## Wiring schematics
+
+The editable KiCad projects and electrical-rule-check reports are available in the [`Schematics`](Schematics) folder. The diagrams use matching net labels to show connections without long crossing wires.
+
+### Handheld controller schematic
+
+![Handheld controller wiring schematic](Schematics/Images/controller.svg)
+
+The controller schematic covers the 450 mAh single-cell vape battery, 5 V boost converter, Black Pill Pico-compatible board, controller ESP32, two joysticks, active-low buttons, UART bridge, and ILI9341/XPT2046 display. Open the editable [`controller.kicad_sch`](Schematics/Controller/controller.kicad_sch) file in KiCad.
+
+### Aircraft schematic
+
+![Aircraft wiring schematic](Schematics/Images/drone.svg)
+
+The aircraft schematic covers the two parallel 4S packs, F405/45 A flight stack, four motors, F405 BEC-powered ESP32, CRSF UART, XL4005 claw-servo rail, four continuous-rotation SG90 servos, and FPV camera system. Open the editable [`drone.kicad_sch`](Schematics/Drone/drone.kicad_sch) file in KiCad.
 
 ## Repository layout
 
@@ -135,7 +151,7 @@ capacitor improved power stability, but the link was unstable. The final system
 uses ESP-NOW Long Range and external antennas.
 
 The transmitter box accommodates joystick spacing, reachable controls, wire
-management, and expansion space. The Raspberry Pi Pico manages the physical
+management, and expansion space. The Black Pill Pico-compatible board manages the physical
 controls while the ESP32 manages the TFT, ESP-NOW link, telemetry, web
 controls, and external UART.
 
@@ -154,9 +170,54 @@ independent from the timing-critical motor control system.
 
 ![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
 
+## Bill of materials
+
+This BOM documents the components used in the current build based on the checked-in firmware, CAD, wiring, and completed prototype.
+
+### Aircraft
+
+| Quantity | Part | Specification or purpose |
+| -------: | ---- | ------------------------ |
+| 1 | FPV quadcopter frame | Standard 5-inch X-frame |
+| 1 | Flight-controller/ESC stack | Aero Selfie F405 flight controller with 45 A 4-in-1 ESC |
+| 3 | Brushless motors | 2306, 2450 KV |
+| 1 | Brushless motor | 2306, 2500 KV |
+| 1 set | Propellers | Two clockwise and two counterclockwise 5-inch propellers, plus spares |
+| 2 | Flight batteries | Matched 4S 1500 mAh packs, or matched 4S 1550 mAh packs |
+| 1 | Parallel battery harness | Current-rated 4S XT60 parallel harness |
+| 1 | Drone ESP32 board | ESP32-WROOM development board used for ESP-NOW, CRSF, telemetry, and claw PWM |
+| 4 | Claw servos | Continuous-rotation SG90 or equivalent |
+| 1 | Servo regulator | XL4005 buck converter adjusted to 4.5 V |
+| 1 | Servo-rail capacitor | Approximately 2,200 uF, rated for at least 10 V |
+| 1 | FPV camera system | Camera used for the aircraft video feed |
+| 1 | Video transmitter and antenna | Sends the FPV camera feed to the pilot |
+| 1 set | Claw parts and mounts | Printed claw legs, servo mounts, cups, and frame attachments from the CAD |
+| As needed | Power and signal wiring | High-current battery wire, servo wire, UART wire, heat-shrink, solder, and zip ties |
+| As needed | Connectors and hardware | XT60 connectors, headers, M2/M3 fasteners, standoffs, and vibration mounting hardware |
+
+### Handheld controller
+
+| Quantity | Part | Specification or purpose |
+| -------: | ---- | ------------------------ |
+| 1 | Black Pill Pico-compatible board | Exposes GP29/ADC3 and reads joysticks and buttons before sending control packets over UART |
+| 1 | Controller ESP32 board | ESP32-WROOM development board for ESP-NOW, TFT dashboard, telemetry, and web controls |
+| 1 | TFT/touch module | 2.8-inch 320x240 ILI9341 display with XPT2046 touch controller |
+| 2 | Joystick modules | Two-axis analog joysticks with push switches |
+| 10 | Momentary pushbuttons | Arm, disarm, four trim buttons, throttle up/down, and claw clockwise/counterclockwise |
+| 1 | Controller battery | Salvaged 450 mAh single-cell lithium-ion vape battery |
+| 1 | Boost converter | Regulated 5 V output with sufficient current for Pico, ESP32, and TFT |
+| 1 | 1S battery protection and charging board | Protects and charges the 450 mAh controller cell |
+| 1 | Main power switch | Rated for the controller input current |
+| 1 | Bulk capacitor | Approximately 470 uF, rated for at least 10 V, on the 5 V controller rail |
+| 1 | Decoupling capacitor | 100 nF ceramic near the ESP32/display power connection |
+| 1 | Controller enclosure | Printed or fabricated handheld transmitter enclosure |
+| As needed | Wiring and hardware | 26 AWG signal wire, power wire, headers, solder, heat-shrink, screws, and standoffs |
+
+The controller uses a Black Pill Pico-compatible board that exposes GP29/ADC3. The right joystick X axis connects directly to GP29/ADC3 exactly as defined in the firmware.
+
 ## Controller pinout
 
-### Raspberry Pi Pico
+### Black Pill Pico-compatible board
 
 Joystick axes are analog inputs. All buttons are active-low: one side of the
 button goes to listed GPIO while another side connects to Pico GND. Firmware
@@ -198,7 +259,7 @@ moving downwards decreases. Disarming sets a held throttle value to zero.
 
 ### Pico to controller ESP32 UART
 
-| Raspberry Pi Pico | Controller ESP32-WROOM |
+| Black Pill Pico-compatible board | Controller ESP32-WROOM |
 | ----------------- | ---------------------- |
 | GP12 UART0 TX     | GPIO16 UART2 RX        |
 | GP13 UART0 RX     | GPIO17 UART2 TX        |

@@ -1,0 +1,137 @@
+ERC report (2026-07-12T16:44:50, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 85.09 mm): Global Label 'ESP_EN'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 87.63 mm): Global Label 'GPIO36_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 90.17 mm): Global Label 'GPIO39_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 92.71 mm): Global Label 'GPIO34_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 95.25 mm): Global Label 'GPIO35_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 97.79 mm): Global Label 'GPIO32_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 100.33 mm): Global Label 'GPIO33_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 102.87 mm): Global Label 'GPIO25_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 105.41 mm): Global Label 'GPIO26_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 107.95 mm): Global Label 'GPIO27_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 118.11 mm): Global Label 'GPIO13_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 120.65 mm): Global Label 'FLASH_D2_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 123.19 mm): Global Label 'FLASH_D3_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(68.58 mm, 125.73 mm): Global Label 'FLASH_CMD_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 85.09 mm): Global Label 'GPIO23_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 87.63 mm): Global Label 'GPIO22_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 90.17 mm): Global Label 'UART_TX_GPIO1_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 92.71 mm): Global Label 'UART_RX_GPIO3_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 95.25 mm): Global Label 'GPIO21_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 100.33 mm): Global Label 'GPIO19_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 113.03 mm): Global Label 'GPIO4_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 115.57 mm): Global Label 'GPIO0_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 118.11 mm): Global Label 'GPIO2_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 120.65 mm): Global Label 'GPIO15_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 123.19 mm): Global Label 'FLASH_D1_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 125.73 mm): Global Label 'FLASH_D0_UNUSED'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(81.28 mm, 128.27 mm): Global Label 'FLASH_CLK_UNUSED'
+[multiple_net_names]: Both CRSF_TX_GPIO12_TO_FC_RX3 and FC_RX3_FROM_ESP_TX12 are attached to the same items; CRSF_TX_GPIO12_TO_FC_RX3 will be used in the netlist
+    ; warning
+    @(111.76 mm, 83.82 mm): Global Label 'CRSF_TX_GPIO12_TO_FC_RX3'
+    @(85.09 mm, 44.45 mm): Global Label 'FC_RX3_FROM_ESP_TX12'
+[multiple_net_names]: Both CRSF_RX_GPIO14_FROM_FC_TX3 and FC_TX3_TO_ESP_RX14 are attached to the same items; CRSF_RX_GPIO14_FROM_FC_TX3 will be used in the netlist
+    ; warning
+    @(68.58 mm, 110.49 mm): Global Label 'CRSF_RX_GPIO14_FROM_FC_TX3'
+    @(140.97 mm, 88.90 mm): Global Label 'FC_TX3_TO_ESP_RX14'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 34.29 mm): Global Label 'ESC_M1_U'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 36.83 mm): Global Label 'ESC_M1_V'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 39.37 mm): Global Label 'ESC_M1_W'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 46.99 mm): Global Label 'ESC_M2_U'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 49.53 mm): Global Label 'ESC_M2_V'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(181.61 mm, 52.07 mm): Global Label 'ESC_M2_W'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 34.29 mm): Global Label 'ESC_M3_U'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 36.83 mm): Global Label 'ESC_M3_V'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 39.37 mm): Global Label 'ESC_M3_W'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 46.99 mm): Global Label 'ESC_M4_U'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 49.53 mm): Global Label 'ESC_M4_V'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(231.14 mm, 52.07 mm): Global Label 'ESC_M4_W'
+
+ ** ERC messages: 41  Errors 0  Warnings 41
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

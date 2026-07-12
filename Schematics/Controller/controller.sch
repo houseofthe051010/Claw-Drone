@@ -1,0 +1,422 @@
+EESchema Schematic File Version 4
+LIBS:power
+LIBS:device
+LIBS:Connector_Generic
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+Sheet 1 1
+Title "Claw Drone Handheld Controller"
+Date "2026-07-12"
+Rev "1.0"
+Comp "Aditya Verma"
+Comment1 "Pin assignments verified against controller firmware and repository README"
+Comment2 "Pico reads controls; ESP32 drives TFT and ESP-NOW radio"
+Comment3 "All buttons are active-low to common GND"
+Comment4 "450mAh 1S vape cell -> protection/charger -> 5V boost converter"
+$EndDescr
+Text Notes 600 550 0 120 ~ 24
+CLAW DRONE HANDHELD CONTROLLER - WIRING SCHEMATIC
+Text Notes 600 760 0 55 ~ 11
+Matching net labels are electrically connected. ESP-NOW is wireless and requires no external radio wiring.
+Text Notes 600 1050 0 75 ~ 15
+RASPBERRY PI PICO
+$Comp
+L Connector_Generic:Conn_01x20 J1
+U 1 1 20000001
+P 2200 2300
+F 0 "J1" H 2280 2292 50 0000 L CNN
+F 1 "BLACK_PILL_PICO_LEFT_HEADER" H 2280 2201 50 0000 L CNN
+	1    2200 2300
+	1 0 0 -1
+$EndComp
+Text GLabel 2000 1400 0 45 BiDi ~ 0
+BTN_ARM_GP0
+Text GLabel 2000 1500 0 45 BiDi ~ 0
+BTN_DISARM_GP1
+Text GLabel 2000 1600 0 45 Input ~ 0
+GND
+Text GLabel 2000 1700 0 45 BiDi ~ 0
+BTN_PITCH_BACK_GP2
+Text GLabel 2000 1800 0 45 BiDi ~ 0
+BTN_ROLL_RIGHT_GP3
+Text GLabel 2000 1900 0 45 BiDi ~ 0
+BTN_ROLL_LEFT_GP4
+Text GLabel 2000 2000 0 45 BiDi ~ 0
+BTN_PITCH_FORWARD_GP5
+Text GLabel 2000 2100 0 45 Input ~ 0
+GND
+Text GLabel 2000 2200 0 45 BiDi ~ 0
+GP6_RESERVED
+Text GLabel 2000 2300 0 45 BiDi ~ 0
+GP7_RESERVED
+Text GLabel 2000 2400 0 45 BiDi ~ 0
+BTN_THROTTLE_DOWN_GP8
+Text GLabel 2000 2500 0 45 BiDi ~ 0
+BTN_THROTTLE_UP_GP9
+Text GLabel 2000 2600 0 45 Input ~ 0
+GND
+Text GLabel 2000 2700 0 45 BiDi ~ 0
+BTN_CLAW_CW_GP10
+Text GLabel 2000 2800 0 45 BiDi ~ 0
+BTN_CLAW_CCW_GP11
+Text GLabel 2000 2900 0 45 Output ~ 0
+PICO_TX_GP12_TO_ESP_RX
+Text GLabel 2000 3000 0 45 Input ~ 0
+PICO_RX_GP13_FROM_ESP_TX
+Text GLabel 2000 3100 0 45 Input ~ 0
+GND
+Text GLabel 2000 3200 0 45 BiDi ~ 0
+BTN_SENS_DOWN_GP14
+Text GLabel 2000 3300 0 45 BiDi ~ 0
+BTN_SENS_UP_GP15
+$Comp
+L Connector_Generic:Conn_01x20 J2
+U 1 1 20000002
+P 3550 2300
+F 0 "J2" H 3630 2292 50 0000 L CNN
+F 1 "BLACK_PILL_PICO_RIGHT_HEADER" H 3630 2201 50 0000 L CNN
+	1    3550 2300
+	1 0 0 -1
+$EndComp
+Text GLabel 3350 1400 0 45 BiDi ~ 0
+GP16_UNUSED
+Text GLabel 3350 1500 0 45 BiDi ~ 0
+GP17_UNUSED
+Text GLabel 3350 1600 0 45 Input ~ 0
+GND
+Text GLabel 3350 1700 0 45 BiDi ~ 0
+GP18_UNUSED
+Text GLabel 3350 1800 0 45 BiDi ~ 0
+GP19_UNUSED
+Text GLabel 3350 1900 0 45 BiDi ~ 0
+GP20_UNUSED
+Text GLabel 3350 2000 0 45 BiDi ~ 0
+GP21_UNUSED
+Text GLabel 3350 2100 0 45 Input ~ 0
+GND
+Text GLabel 3350 2200 0 45 BiDi ~ 0
+GP22_UNUSED
+Text GLabel 3350 2300 0 45 BiDi ~ 0
+PICO_RUN
+Text GLabel 3350 2400 0 45 Input ~ 0
+JOY_LEFT_X_ADC0_GP26
+Text GLabel 3350 2500 0 45 Input ~ 0
+JOY_LEFT_Y_ADC1_GP27
+Text GLabel 3350 2600 0 45 Input ~ 0
+AGND
+Text GLabel 3350 2700 0 45 Input ~ 0
+JOY_RIGHT_Y_ADC2_GP28
+Text GLabel 3350 2800 0 45 Input ~ 0
+ADC_VREF
+Text GLabel 3350 2900 0 45 BiDi ~ 0
+PICO_3V3_EN
+Text GLabel 3350 3000 0 45 Output ~ 0
++3V3_PICO
+Text GLabel 3350 3100 0 45 Input ~ 0
+GND
+Text GLabel 3350 3200 0 45 Input ~ 0
++5V_CONTROLLER
+Text GLabel 3350 3300 0 45 Input ~ 0
+USB_VBUS
+Text Notes 1600 3600 0 45 ~ 9
+The Black Pill Pico-compatible controller board exposes GP29/ADC3 for the right joystick X axis.
+Text Notes 1600 3750 0 45 ~ 9
+The connection matches the controller firmware: GP26 left X, GP27 left Y, GP28 right Y, and GP29 right X.
+Text Notes 4700 1050 0 75 ~ 15
+CONTROLLER ESP32-WROOM / DEVKIT
+$Comp
+L Connector_Generic:Conn_02x19_Odd_Even J3
+U 1 1 20000003
+P 5700 2450
+F 0 "J3" H 5750 3567 50 0000 C CNN
+F 1 "ESP32_DEVKIT_V1_38PIN" H 5750 3476 50 0000 C CNN
+	1    5700 2450
+	1 0 0 -1
+$EndComp
+Text GLabel 5500 1550 0 45 Output ~ 0
++3V3_ESP32
+Text GLabel 6000 1550 2 45 Input ~ 0
+GND
+Text GLabel 5500 1650 0 45 BiDi ~ 0
+ESP_EN
+Text GLabel 6000 1650 2 45 Output ~ 0
+TFT_MOSI_GPIO23
+Text GLabel 5500 1750 0 45 Input ~ 0
+GPIO36_UNUSED
+Text GLabel 6000 1750 2 45 Output ~ 0
+TOUCH_IRQ_GPIO22
+Text GLabel 5500 1850 0 45 Input ~ 0
+GPIO39_UNUSED
+Text GLabel 6000 1850 2 45 Output ~ 0
+UART_TX_GPIO1_UNUSED
+Text GLabel 5500 1950 0 45 Input ~ 0
+GPIO34_UNUSED
+Text GLabel 6000 1950 2 45 Input ~ 0
+UART_RX_GPIO3_UNUSED
+Text GLabel 5500 2050 0 45 Input ~ 0
+GPIO35_UNUSED
+Text GLabel 6000 2050 2 45 Output ~ 0
+TOUCH_CS_GPIO21
+Text GLabel 5500 2150 0 45 BiDi ~ 0
+GPIO32_UNUSED
+Text GLabel 6000 2150 2 45 Input ~ 0
+GND
+Text GLabel 5500 2250 0 45 BiDi ~ 0
+GPIO33_UNUSED
+Text GLabel 6000 2250 2 45 Input ~ 0
+TFT_MISO_GPIO19
+Text GLabel 5500 2350 0 45 BiDi ~ 0
+GPIO25_UNUSED
+Text GLabel 6000 2350 2 45 Output ~ 0
+TFT_SCLK_GPIO18
+Text GLabel 5500 2450 0 45 BiDi ~ 0
+GPIO26_UNUSED
+Text GLabel 6000 2450 2 45 BiDi ~ 0
+GPIO5_UNUSED
+Text GLabel 5500 2550 0 45 BiDi ~ 0
+GPIO27_UNUSED
+Text GLabel 6000 2550 2 45 Output ~ 0
+ESP_TX_GPIO17_TO_PICO_RX
+Text GLabel 5500 2650 0 45 BiDi ~ 0
+GPIO14_UNUSED
+Text GLabel 6000 2650 2 45 Input ~ 0
+ESP_RX_GPIO16_FROM_PICO_TX
+Text GLabel 5500 2750 0 45 BiDi ~ 0
+GPIO12_UNUSED
+Text GLabel 6000 2750 2 45 Output ~ 0
+TFT_RST_GPIO4
+Text GLabel 5500 2850 0 45 Input ~ 0
+GND
+Text GLabel 6000 2850 2 45 BiDi ~ 0
+GPIO0_UNUSED
+Text GLabel 5500 2950 0 45 BiDi ~ 0
+GPIO13_UNUSED
+Text GLabel 6000 2950 2 45 Output ~ 0
+TFT_DC_GPIO2
+Text GLabel 5500 3050 0 45 BiDi ~ 0
+FLASH_D2_UNUSED
+Text GLabel 6000 3050 2 45 Output ~ 0
+TFT_CS_GPIO15
+Text GLabel 5500 3150 0 45 BiDi ~ 0
+FLASH_D3_UNUSED
+Text GLabel 6000 3150 2 45 BiDi ~ 0
+FLASH_D1_UNUSED
+Text GLabel 5500 3250 0 45 BiDi ~ 0
+FLASH_CMD_UNUSED
+Text GLabel 6000 3250 2 45 BiDi ~ 0
+FLASH_D0_UNUSED
+Text GLabel 5500 3350 0 45 Input ~ 0
++5V_CONTROLLER
+Text GLabel 6000 3350 2 45 BiDi ~ 0
+FLASH_CLK_UNUSED
+Text Notes 4700 3650 0 45 ~ 9
+GPIO2 and GPIO15 are boot straps; the installed TFT module must not force invalid boot levels.
+Text Notes 7000 1050 0 75 ~ 15
+CONTROLS AND DISPLAY
+$Comp
+L Connector_Generic:Conn_01x05 J4
+U 1 1 20000004
+P 7800 1650
+F 0 "J4" H 7880 1692 50 0000 L CNN
+F 1 "LEFT_JOYSTICK" H 7880 1601 50 0000 L CNN
+	1    7800 1650
+	1 0 0 -1
+$EndComp
+Text GLabel 7600 1450 0 45 Input ~ 0
++3V3_PICO
+Text GLabel 7600 1550 0 45 Input ~ 0
+GND
+Text GLabel 7600 1650 0 45 Output ~ 0
+JOY_LEFT_X_ADC0_GP26
+Text GLabel 7600 1750 0 45 Output ~ 0
+JOY_LEFT_Y_ADC1_GP27
+Text GLabel 7600 1850 0 45 Output ~ 0
+BTN_SENS_DOWN_GP14
+$Comp
+L Connector_Generic:Conn_01x05 J5
+U 1 1 20000005
+P 7800 2350
+F 0 "J5" H 7880 2392 50 0000 L CNN
+F 1 "RIGHT_JOYSTICK" H 7880 2301 50 0000 L CNN
+	1    7800 2350
+	1 0 0 -1
+$EndComp
+Text GLabel 7600 2150 0 45 Input ~ 0
++3V3_PICO
+Text GLabel 7600 2250 0 45 Input ~ 0
+GND
+Text GLabel 7600 2350 0 45 Output ~ 0
+JOY_RIGHT_X_ADC3_GP29
+Text GLabel 7600 2450 0 45 Output ~ 0
+JOY_RIGHT_Y_ADC2_GP28
+Text GLabel 7600 2550 0 45 Output ~ 0
+BTN_SENS_UP_GP15
+$Comp
+L Connector_Generic:Conn_01x12 J6
+U 1 1 20000006
+P 9500 2150
+F 0 "J6" H 9580 2142 50 0000 L CNN
+F 1 "ACTIVE_LOW_BUTTON_BANK" H 9580 2051 50 0000 L CNN
+	1    9500 2150
+	1 0 0 -1
+$EndComp
+Text GLabel 9300 1650 0 42 Output ~ 0
+BTN_ARM_GP0
+Text GLabel 9300 1750 0 42 Output ~ 0
+BTN_DISARM_GP1
+Text GLabel 9300 1850 0 42 Output ~ 0
+BTN_PITCH_BACK_GP2
+Text GLabel 9300 1950 0 42 Output ~ 0
+BTN_ROLL_RIGHT_GP3
+Text GLabel 9300 2050 0 42 Output ~ 0
+BTN_ROLL_LEFT_GP4
+Text GLabel 9300 2150 0 42 Output ~ 0
+BTN_PITCH_FORWARD_GP5
+Text GLabel 9300 2250 0 42 Output ~ 0
+BTN_THROTTLE_DOWN_GP8
+Text GLabel 9300 2350 0 42 Output ~ 0
+BTN_THROTTLE_UP_GP9
+Text GLabel 9300 2450 0 42 Output ~ 0
+BTN_CLAW_CW_GP10
+Text GLabel 9300 2550 0 42 Output ~ 0
+BTN_CLAW_CCW_GP11
+Text GLabel 9300 2650 0 42 Output ~ 0
+BTN_SENS_DOWN_GP14
+Text GLabel 9300 2750 0 42 Output ~ 0
+BTN_SENS_UP_GP15
+Text Notes 8850 3050 0 45 ~ 9
+Each momentary button connects its listed signal to GND when pressed; Pico internal pull-ups are enabled.
+$Comp
+L Connector_Generic:Conn_01x10 J7
+U 1 1 20000007
+P 7900 3550
+F 0 "J7" H 7980 3542 50 0000 L CNN
+F 1 "ILI9341_TFT_XPT2046_MODULE" H 7980 3451 50 0000 L CNN
+	1    7900 3550
+	1 0 0 -1
+$EndComp
+Text GLabel 7700 3150 0 45 Input ~ 0
++5V_CONTROLLER
+Text GLabel 7700 3250 0 45 Input ~ 0
+GND
+Text GLabel 7700 3350 0 45 Input ~ 0
+TFT_CS_GPIO15
+Text GLabel 7700 3450 0 45 Input ~ 0
+TFT_DC_GPIO2
+Text GLabel 7700 3550 0 45 Input ~ 0
+TFT_RST_GPIO4
+Text GLabel 7700 3650 0 45 Input ~ 0
+TFT_SCLK_GPIO18
+Text GLabel 7700 3750 0 45 Input ~ 0
+TFT_MOSI_GPIO23
+Text GLabel 7700 3850 0 45 Output ~ 0
+TFT_MISO_GPIO19
+Text GLabel 7700 3950 0 45 Input ~ 0
+TOUCH_CS_GPIO21
+Text GLabel 7700 4050 0 45 Output ~ 0
+TOUCH_IRQ_GPIO22
+Text Notes 7150 4350 0 45 ~ 9
+The ILI9341/XPT2046 breakout is powered from the regulated 5V controller rail.
+Text Notes 600 4550 0 75 ~ 15
+UART AND POWER
+Text GLabel 2000 4850 0 45 Output ~ 0
+PICO_TX_GP12_TO_ESP_RX
+Text GLabel 3100 4850 2 45 Input ~ 0
+ESP_RX_GPIO16_FROM_PICO_TX
+Wire Wire Line
+	2000 4850 3100 4850
+Text GLabel 2000 5050 0 45 Input ~ 0
+PICO_RX_GP13_FROM_ESP_TX
+Text GLabel 3100 5050 2 45 Output ~ 0
+ESP_TX_GPIO17_TO_PICO_RX
+Wire Wire Line
+	2000 5050 3100 5050
+Text Notes 2000 5250 0 45 ~ 9
+UART0 / UART2: 115200 baud, 8-N-1; Pico GP12 TX -> ESP32 GPIO16 RX, Pico GP13 RX <- ESP32 GPIO17 TX.
+$Comp
+L Connector_Generic:Conn_01x02 J8
+U 1 1 20000008
+P 1900 5850
+F 0 "J8" H 1818 6067 50 0000 C CNN
+F 1 "450mAh_1S_SALVAGED_VAPE_CELL" H 1818 5976 50 0000 C CNN
+	1    1900 5850
+	-1 0 0 -1
+$EndComp
+Text GLabel 2100 5850 2 45 Output ~ 0
+CELL_1S_RAW
+Text GLabel 2100 5950 2 45 Output ~ 0
+GND
+$Comp
+L Connector_Generic:Conn_01x04 J10
+U 1 1 20000012
+P 7600 5900
+F 0 "J10" H 7680 5892 50 0000 L CNN
+F 1 "1S_PROTECTION_AND_CHARGER" H 7680 5801 50 0000 L CNN
+	1    7600 5900
+	1 0 0 -1
+$EndComp
+Text GLabel 7400 5800 0 45 Input ~ 0
+CELL_1S_RAW
+Text GLabel 7400 5900 0 45 Input ~ 0
+GND
+Text GLabel 7400 6000 0 45 Output ~ 0
+VBAT_1S
+Text GLabel 7400 6100 0 45 Output ~ 0
+GND
+$Comp
+L Connector_Generic:Conn_01x04 J9
+U 1 1 20000011
+P 3150 5850
+F 0 "J9" H 3230 5842 50 0000 L CNN
+F 1 "5V_BOOST_CONVERTER" H 3230 5751 50 0000 L CNN
+	1    3150 5850
+	1 0 0 -1
+$EndComp
+Text GLabel 2950 5750 0 45 Input ~ 0
+VBAT_1S
+Text GLabel 2950 5850 0 45 Input ~ 0
+GND
+Text GLabel 2950 5950 0 45 Output ~ 0
++5V_CONTROLLER
+Text GLabel 2950 6050 0 45 Output ~ 0
+GND
+$Comp
+L Device:C_Polarized C1
+U 1 1 20000009
+P 4550 5900
+F 0 "C1" H 3518 5946 50 0000 L CNN
+F 1 "470uF_10V" H 3518 5855 50 0000 L CNN
+	1    4550 5900
+	1 0 0 -1
+$EndComp
+Text GLabel 4550 5750 1 45 Input ~ 0
++5V_CONTROLLER
+Text GLabel 4550 6050 3 45 Input ~ 0
+GND
+$Comp
+L Device:C C2
+U 1 1 20000010
+P 5650 5900
+F 0 "C2" H 4615 5946 50 0000 L CNN
+F 1 "100nF" H 4615 5855 50 0000 L CNN
+	1    5650 5900
+	1 0 0 -1
+$EndComp
+Text GLabel 5650 5750 1 45 Input ~ 0
++3V3_ESP32
+Text GLabel 5650 6050 3 45 Input ~ 0
+GND
+Text Notes 1350 6300 0 45 ~ 9
+The 450mAh cell connects through the 1S protection/charging board before the 5V boost converter.
+Text Notes 600 6650 0 60 ~ 12
+CONTROLLER CONNECTION SUMMARY
+Text Notes 600 6850 0 48 ~ 10
+Pico: GP0/1 arm-disarm; GP2-5 trim; GP8/9 throttle; GP10/11 claw; GP14/15 sensitivity.
+Text Notes 600 7000 0 48 ~ 10
+Joysticks: GP26 left X, GP27 left Y, GP28 right Y, GP29 right X as specified by firmware.
+Text Notes 600 7150 0 48 ~ 10
+ESP32 TFT: CS15 DC2 RST4 SCLK18 MOSI23 MISO19 TOUCH_CS21 TOUCH_IRQ22.
+Text Notes 600 7300 0 48 ~ 10
+All grounds common. Power the joysticks from Pico 3.3V so ADC inputs never exceed 3.3V.
+$EndSCHEMATC
