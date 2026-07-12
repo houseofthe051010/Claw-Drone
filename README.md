@@ -53,13 +53,13 @@ The editable KiCad projects and electrical-rule-check reports are available in t
 
 ### Handheld controller schematic
 
-![Handheld controller wiring schematic](Schematics/Images/controller.svg)
+![Handheld controller wiring schematic](Pictures/Controller_Schematic.png)
 
 The controller schematic covers the 450 mAh single-cell vape battery, 5 V boost converter, Black Pill Pico-compatible board, controller ESP32, two joysticks, active-low buttons, UART bridge, and ILI9341/XPT2046 display. Open the editable [`controller.kicad_sch`](Schematics/Controller/controller.kicad_sch) file in KiCad.
 
 ### Aircraft schematic
 
-![Aircraft wiring schematic](Schematics/Images/drone.svg)
+![Aircraft wiring schematic](Pictures/Claw_Drone_Schematic.png)
 
 The aircraft schematic covers the two parallel 4S packs, F405/45 A flight stack, four motors, F405 BEC-powered ESP32, CRSF UART, XL4005 claw-servo rail, four continuous-rotation SG90 servos, and FPV camera system. Open the editable [`drone.kicad_sch`](Schematics/Drone/drone.kicad_sch) file in KiCad.
 
