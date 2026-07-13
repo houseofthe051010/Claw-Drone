@@ -55,7 +55,6 @@ The editable KiCad projects and electrical-rule-check reports are available in t
 
 ![Handheld controller wiring schematic](Pictures/Controller_Schematic.png)
 
-The controller schematic covers the 450 mAh single-cell vape battery, 5 V boost converter, Black Pill Pico-compatible board, controller ESP32, two joysticks, active-low buttons, UART bridge, and ILI9341/XPT2046 display. Open the editable [`controller.kicad_sch`](Schematics/Controller/controller.kicad_sch) file in KiCad.
 
 ### Aircraft schematic
 
