@@ -65,6 +65,7 @@ The aircraft schematic covers the two parallel 4S packs, F405/45 A flight stack,
 ## Repository layout
 
 ```text
+BOM.csv                      Bill of materials for the aircraft and handheld controller
 CAD/
   Drone+Frame.stp
 Code/

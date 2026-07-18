@@ -1,0 +1,29 @@
+Assembly,Quantity,Part,Specification
+Aircraft,1,FPV quadcopter frame,Standard 5-inch approximately 210 mm carbon-fiber X-frame
+Aircraft,1,Flight-controller and ESC stack,Aero Selfie STM32F405 flight controller with 45 A 4-in-1 ESC
+Aircraft,3,Brushless motor,2306-size 2450 KV FPV motor compatible with 4S LiPo
+Aircraft,1,Brushless motor,2306-size 2500 KV FPV motor compatible with 4S LiPo
+Aircraft,1 set,Propellers,5-inch two-blade or three-blade propellers; two clockwise and two counterclockwise plus spares
+Aircraft,2,Flight battery,Matched 4S LiPo 1500 mAh or 1550 mAh pack with XT60 connector
+Aircraft,1,Parallel battery harness,Current-rated 4S XT60 parallel harness
+Aircraft,1,Drone ESP32 board,ESP32-WROOM-32U DevKit board with U.FL external-antenna connection
+Aircraft,4,Claw servo,SG90 9 g continuous-rotation micro servo or equivalent
+Aircraft,1,Servo regulator,XL4005 adjustable DC-DC buck converter set to 4.5 V
+Aircraft,1,Servo-rail capacitor,2200 uF electrolytic capacitor rated 10 V or higher
+Aircraft,1,Camera module,Seeed Studio XIAO ESP32S3 Sense camera module powered from 5 V
+Aircraft,1 set,Claw parts and mounts,3D-printed claw legs servo mounts cups and frame attachments from SOURCE CAD
+Aircraft,As needed,Power and signal wiring,High-current silicone battery wire servo wire UART wire heat-shrink solder and zip ties
+Aircraft,As needed,Connectors and hardware,XT60 connectors pin headers M2 and M3 fasteners standoffs and vibration-isolating hardware
+Controller,1,Primary control board,RP2040 Black Pill or Raspberry Pi Pico-compatible board with GP29/ADC3 exposed
+Controller,1,Controller ESP32 board,ESP32-WROOM-32U DevKit board with U.FL external-antenna connection
+Controller,1,TFT touch display,2.8-inch 320 x 240 SPI TFT with ILI9341 display controller and XPT2046 touch controller
+Controller,2,Joystick module,Two-axis analog thumb joystick module with push switch and 3.3 V-compatible outputs
+Controller,10,Momentary pushbutton,Normally-open SPST panel pushbutton
+Controller,1,Controller battery,3.7 V 450 mAh single-cell lithium-ion battery
+Controller,1,Boost converter,Adjustable DC-DC boost module set to regulated 5.0 V with at least 1 A output capability
+Controller,1,Battery charger and protection board,TP4056 1S lithium-ion charger module with battery protection
+Controller,1,Main power switch,SPST toggle switch rated for the controller input current
+Controller,1,Bulk capacitor,470 uF electrolytic capacitor rated 10 V or higher
+Controller,1,Decoupling capacitor,100 nF multilayer ceramic capacitor rated 10 V or higher
+Controller,1,Controller enclosure,3D-printed handheld transmitter enclosure and lid from SOURCE CAD
+Controller,As needed,Wiring and hardware,26 AWG signal and power wire headers solder heat-shrink M3 screws nuts and standoffs
