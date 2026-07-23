@@ -51,45 +51,26 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
 
 
 
-## Repository layout
-
-```text
-BOM.csv                      Bill of materials for the aircraft and handheld controller
-CAD/
-  Drone+Frame.stp
-Code/
-  controller/
-    pico/                 MicroPython joystick and button firmware
-    esp32_tx/             ESP-IDF UART-to-ESP-NOW transmitter and dashboard
-  drone/
-    esp32_rx/             ESP-IDF ESP-NOW-to-CRSF receiver and servo PWM
-  diagnostics/
-    pico_joystick_button_test/
-```
-
-See [Code/README.md](Code/README.md) for build entry points.
-
 ## Design and build process
 
 ### 1. Early arm concepts
 
-The first design was a conventional X-frame with a five-degree-of-freedom arm.
-This design was abandoned because of the arm weight. The second idea was a
-frame with electronics close to its perimeter and an opening in the center.
-A servo-driven rope and spring system would tighten around the payload through
-this opening. Printed prototype of this concept revealed two major problems:
+First design concept was traditional X-frame design with 5-DoF arm.
+It has been dropped because of the arm mass. Second design concept was a
+frame with electronics placed near its edge, and an opening in its center.
+Through this opening, servo-controlled rope and spring mechanism were going
+to clamp the payload. During prototyping of this concept, there were
+identified two main disadvantages:
 
-* The gripper was too close to the airframe and could grip a payload only
-  when the drone was nearly touching it.
-* Obstructed propeller downwash due to the frame and claw parts reduced
-  thrust, efficiency, and flight time.
+* Too close placement of the gripper to the airframe made it possible to
+  grasp a payload when the drone was very close to it.
+* Propellers' downwash was restricted by frame and gripper structures,
+  reducing thrust and efficiency.
+
 
 ### 2. Lightweight claw redesign
 
-The project returned to a conventional 5-inch X-frame and a lightweight claw
-underneath. The final payload system consists of four continuous-rotation
-servos arranged symmetrically and long legs with cup-shaped ends. This gives
-large payload capture area without the mass of a multi-axis robotic arm.
+I had four servos underneath, and initially a 5 dof arm as the claw.
 
 ![Early claw prototype](https://cdn.hackclub.com/019ec355-8233-7346-a96f-261aa930281d/Screenshot%202026-06-13%20193231.png)
 
@@ -97,63 +78,28 @@ large payload capture area without the mass of a multi-axis robotic arm.
 
 ### 3. ESP32 flight-controller experiment
 
-The first flight controller prototype was based on ESP32-S3 SuperMini board
-and a BMI160 IMU over SPI. The sensor was mounted, soldered, and calibrated
-while testing ESP-FC and Betaflight-compatible configuration tool.
-
-A 4-in-1 ESC refused to arm and spin the motors reliably with DSHOT, ONESHOT,
-and PWM protocols despite many tries with different wiring and pin assignments.
-One ESP32 also crashed during ESC testing, probably due to an electrical fault
-on the ESC signal connection.
-
-Next, four low-cost individual ESCs were tested. They armed and spun the
-motors, but their approximate 50 Hz update rate was too low for the control of
-a responsive 5-inch quadcopter. Multiple attempts to arm and fly resulted in
-failed takeoffs and propellers breakage.
+I used a esp32 supermini S3 but there were problems with the ESC connection and FC espnow connection leading me to abondon it.
 
 ![ESP32 and ESC development](https://cdn.hackclub.com/019ecc0f-3c6b-7371-a2ad-fd34ee2507ea/image.png)
 
 ### 4. Moving flight control to Betaflight
 
-The experimental ESP32 flight controller and low-frequency ESCs were replaced
-by a conventional flight controller and 45 A ESC stack documented below.
-It increased the reliability of the flight-critical system while leaving the
-payload, receiver bridge, telemetry, and transmitter open for experimenting.
+Switched from ESP32 FC + cheap rc airplane ESCs to conventional drone stack.
 
 ![Flight-controller stack](https://cdn.hackclub.com/019ed383-7922-7b6d-8e36-17c1cc8e7390/image.png)
 
-### 5. Temporary browser controller
 
-Until the custom transmitter was ready, there was a test with an ESP32
-receiver which connected to the flight controller over UART. Two virtual
-joysticks in a browser of a phone proved that the airframe and receiver
-worked. Wi-Fi latency and lack of video made it unsuitable for a final
-controller, but the test helped to validate the basic aircraft.
+### 5. Building the custom transmitter
 
-The test interface was based on
-[cifertech/ESP32-Drone](https://github.com/cifertech/ESP32-Drone).
-
-### 6. Building the custom transmitter
-
-Firstly, NRF24L01 modules were considered. Adding a 100 µF decoupling
-capacitor improved power stability, but the link was unstable. The final system
-uses ESP-NOW Long Range and external antennas.
-
-The transmitter box accommodates joystick spacing, reachable controls, wire
-management, and expansion space. The Black Pill Pico-compatible board manages the physical
-controls while the ESP32 manages the TFT, ESP-NOW link, telemetry, web
-controls, and external UART.
+NRF24L01 were used at first but I switched to ESPNOW as its less wiring and reliable.
 
 ![Transmitter wiring](https://cdn.hackclub.com/019f1057-e119-775f-ac5c-63eac06e99c7/image.png)
 
 ![Completed transmitter](https://cdn.hackclub.com/019f1058-59bb-790c-9c65-282e0644dde1/image.png)
 
-### 7. Final assembly
+### 6. Final assembly
 
-The claws, XL4005 power regulator, receiver, camera hardware, and printed
-mounts were attached to the 5-inch frame. Payload servos stay on the drone
-ESP32 and not on the flight-controller motor outputs to keep the claw
-independent from the timing-critical motor control system.
+Everything connected together
 
 ![Final electronics assembly](https://cdn.hackclub.com/019f148b-7dcf-7bab-8370-dddf9c211c3d/image.png)
 
@@ -161,10 +107,6 @@ independent from the timing-critical motor control system.
 
 ## Bill of materials
 
-This BOM documents the components used in the current build. Prices are the
-amount used by the BOM, not necessarily the full multipack purchase price, and
-exclude shipping and tax. Marketplace prices were checked on July 23, 2026 and
-may change.
 
 ### Aircraft
 
@@ -208,7 +150,7 @@ The controller uses a Black Pill Pico-compatible board that exposes GP29/ADC3. T
 
 ## Assembly process
 
-Build the physical aircraft and handheld controller through the process below. Follow [Building Your First 5-Inch FPV Drone: A Complete Step-by-Step Guide](https://blog.uavmodel.com/building-your-first-5-inch-fpv-drone-a-complete-step-by-step-guide/) for the standard frame, motor, flight-stack, soldering, Betaflight, and preflight stages.
+Use [Building Your First 5-Inch FPV Drone: A Complete Step-by-Step Guide](https://blog.uavmodel.com/building-your-first-5-inch-fpv-drone-a-complete-step-by-step-guide/) for the standard FPV frame/motor/ESC+FC stack guide.
 
 Complete all soldering, configuration, continuity checks, and powered bench tests with the propellers removed. Use a smoke stopper for the first power-up.
 
