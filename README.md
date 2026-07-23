@@ -214,116 +214,101 @@ Complete all soldering, configuration, continuity checks, and powered bench test
 
 ### Aircraft build
 
-#### 1. Five-inch frame and propulsion
+1. Five-inch frame and propulsion
+Install a standard 5-inch FPV racer frame with the F405 flight controller, 45 A ESC, four motors, ESP32 receiver, XIAO ESP32 camera, XL4005 regulator, claw servos, batteries, and printed servo holders.
+Construct the arms, bottom plates, standoffs, and top plate. Mount the FC/ESC stack on its vibration dampers with the flight controller arrow directed forward.
+Install three 2306 2450 KV motors and one 2306 2500 KV motor. Betaflight compensates for the tiny difference with closed-loop control.
+Use motor screws that only reach the motor bases but not the windings. Route the three motor wires along their respective arms, leaving strain relief and soldering them to the ESC pads.
 
-1. Start with a conventional 5-inch FPV racing frame and lay out the F405 flight controller, 45 A ESC, four motors, ESP32 receiver, XIAO ESP32 camera, XL4005 regulator, claw servos, batteries, and printed servo mounts.
-2. Assemble the arms, bottom plates, standoffs, and top plate. Mount the FC/ESC stack centrally on its vibration-isolating gummies with the flight-controller arrow facing forward.
-3. Mount three 2306 2450 KV motors and one 2306 2500 KV motor. Betaflight handles the small KV difference through closed-loop control.
-4. Use motor screws that engage the motor bases without reaching the windings. Route the three wires from each motor along its arm, leave strain-relief slack, and solder them to the corresponding ESC pads.
+2. Parallel battery connection
+Use two matching 4S batteries with identical chemistry, capacity, and voltage in a parallel combination.
+Solder two XT60 pigtails to the ESC battery pads with heavy-gauge wire that reaches the two battery positions.
+Both positive wires connected to the ESC BAT+ pad, and both negatives to BAT-. Each joint is insulated and strain-relieved to prevent the battery movement from straining the ESC pads.
+Solder the input capacitor of the flight stack between the ESC battery pads with their marked polarity. Finish the continuity check prior to battery attachment.
 
-#### 2. Parallel battery connection
+3. Standard FPV connections
+Plug the ESC-to-flight controller cable in its keyed position.
+Plug the XIAO ESP32 camera into the F405 5 V BEC and common ground.
+The custom drone ESP32 acts as an ESP-NOW receiver and CRSF bridge instead of a conventional radio receiver.
+Perform the power, receiver, motor direction, failsafe, and servos tests before attaching the propellers.
 
-1. Use two matched 4S batteries with the same chemistry, capacity, and voltage in a parallel configuration.
-2. Solder two XT60 pigtails to the ESC battery pads with high-current wire cut to reach the two battery positions.
-3. Both positive wires joined the ESC `BAT+` pad, and both negative wires joined `BAT-`. Every joint was insulated and strain-relieved so battery movement did not load the ESC pads.
-4. Solder the flight-stack input capacitor across the ESC battery pads with the marked polarity. Complete a continuity test before the first battery connection.
+4. Four-servos claw
+3D print four SG90 mount holders and install one beneath each motor holder.
+Install 10 mm M3 screws through each printed holder and frame arm into the motor base. The screw installation stops short of the motor windings.
+Secure each continuous rotation SG90 to its printed holder with the provided self-tapping screws.
+Route the servo cables along the arms to the inside. Secure them outside the motor and propeller area with zip ties.
+Connect all four servo positive wires to XL4005 OUT+, and all four grounds to OUT-. Connect the PWM control lines as servo 1 – GPIO16, servo 2 – GPIO17, servo 3 – GPIO5, and servo 4 – GPIO18.
 
-#### 3. Standard FPV wiring
+5. XL4005 claw power supply
+Connect XL4005 IN+ directly to the ESC BAT+ pad and IN- to BAT-.
+Set the voltage on the regulator to 4.5 V using a smoke stopper before connecting the servos.
+Connect XL4005 OUT-, the F405, drone ESP32, and all four servos to common ground. Servo current goes directly from the XL4005 bypassing the ESP32 and FC.
 
-1. Connect the ESC-to-flight-controller harness in its keyed orientation.
-2. Connect the XIAO ESP32 camera to the F405 5 V BEC and common ground.
-3. The custom drone ESP32 replaced a conventional radio receiver and served as the ESP-NOW receiver and CRSF bridge.
-4. Complete the power, receiver, motor-direction, failsafe, and servo tests before fitting the propellers.
+6. Drone ESP32 receiver
+Provide the drone ESP32 5V/VIN input from the F405 5 V BEC. Connect its ground to the F405 ground and XL4005 OUT-.
+Use the CRSF UART interface with ESP32 GPIO12 TX to F405 RX3 and ESP32 GPIO14 RX to F405 TX3.
+Install the ESP32 board on top of the frame with its long edge horizontally and partially projecting.
+Zip ties hold the board over an insulating pad allowing some movement upon impact rather than installing it rigidly to the carbon frame.
+Mount the U.FL antenna and route it through the antenna hole, away from the carbon frame, heavy-current wiring, and the propeller area.
 
-#### 4. Four-servo claw
+7. XIAO ESP32 camera
+Supply 5 V input of the XIAO ESP32 camera with the F405 5 V BEC. Ground the board to the F405 ground.
+Install the camera on the front with an unobstructed view and secure its board and cable outside the propeller area.
 
-1. 3D print four SG90 mounts and place one beneath each motor mount.
-2. Use 10 mm M3 screws through each printed mount and frame arm into the motor base. Their installed depth stops below the motor windings.
-3. Fasten each continuous-rotation SG90 to its printed mount with the supplied self-tapping screws.
-4. Route the servo cables inward along the arms and secure them with zip ties outside the motor and propeller paths, leaving slack for frame flex.
-5. All four servo positive wires joined XL4005 `OUT+`, and all four grounds joined `OUT-`. The PWM signals connected as servo 1 to GPIO16, servo 2 to GPIO17, servo 3 to GPIO5, and servo 4 to GPIO18.
-
-#### 5. XL4005 claw power supply
-
-1. Connect XL4005 `IN+` directly to the ESC `BAT+` pad and `IN-` to `BAT-`.
-2. Set the regulator output to 4.5 V through a smoke stopper before attaching the servos.
-3. XL4005 `OUT-`, the F405, drone ESP32, and all four servos shared a common ground. Servo current flowed directly from the XL4005 rather than through the ESP32 or flight controller.
-
-#### 6. Drone ESP32 receiver
-
-1. Power the drone ESP32 `5V`/`VIN` pin from the F405 5 V BEC. Join its ground to F405 ground and XL4005 `OUT-`.
-2. The CRSF UART used ESP32 GPIO12 TX to F405 RX3 and ESP32 GPIO14 RX to F405 TX3.
-3. Mount the ESP32 across the front of the frame with its long edge running sideways and protruding slightly.
-4. Zip ties held the board over an insulating pad, giving it limited movement during impacts instead of fixing it rigidly to the carbon frame.
-5. Connect the U.FL antenna and route it through the antenna opening, away from the carbon frame, high-current wiring, and propeller area.
-
-#### 7. XIAO ESP32 camera
-
-1. Connect the XIAO ESP32 camera's 5 V input to the F405 5 V BEC and join its ground to F405 ground.
-2. Mount the camera at the front with an unobstructed view and secure its board and cable outside the propeller area.
-
-#### 8. Aircraft commissioning
-
-1. Inspect the solder joints, wire routes, connector polarity, mounting screws, motor clearance, and propeller clearance.
-2. A multimeter confirmed continuity and the regulator voltages.
-3. The first battery connection ran through a smoke stopper. The F405, ESC, both ESP32 boards, camera, and XL4005 powered normally.
-4. With the propellers removed, Betaflight confirmed the FC orientation, receiver channels, arm and failsafe behavior, motor order, and motor direction.
-5. Test the four claw servos and confirm the firmware's opposite-pair rotation.
-6. Fit balanced 5-inch propellers after the bench tests, then complete the first hover and radio range test outdoors.
+8. Aircraft commissioning
+Inspect the solder joints, wire routing, connector polarity, mounting screws, motor clearances, and propeller clearances.
+Check the continuity and voltages on the regulator with the multimeter.
+Connect the first battery through a smoke stopper. The F405, ESC, both ESP32 boards, camera, and XL4005 power up normally.
+With the propellers detached, Betaflight verifies the FC orientation, receiver channels, arm and failsafe operation, motor order, and motor direction.
+Verify the four claw servos and the correct rotation direction on opposite pairs in the firmware.
+Install balanced 5-inch propellers after the bench test and make the first hover and radio range test outside.
 
 ### Handheld controller build
 
-#### 1. Enclosure preparation
+1. Enclosure preparation
+Print the enclosure and its top lid and clean button openings, joystick openings, TFT opening, USB access, antenna opening, and M3 mounting holes.
+Position the 450 mAh cell, TP4056, 5V boost converter, Black Pill Pico-compatible board, controller ESP32, two joysticks, buttons, TFT, switch, and antenna cable inside the enclosure.
+Wire lengths provided sufficient clearance to open the lid without tensioning the display and antenna cable.
 
-1. Print the controller enclosure and top lid, then clean the button openings, joystick holes, TFT opening, USB access, antenna opening, and M3 mounting holes.
-2. Arrange the 450 mAh cell, TP4056, 5 V boost converter, Black Pill Pico-compatible board, controller ESP32, two joysticks, buttons, TFT, switch, and antenna cable inside the enclosure.
-3. The wire lengths left enough slack to open the lid without loading the display or antenna cable.
+2. Controller power supply
+Secure the 450 mAh salvage vape cell in its cell compartment with hot glue away from cell terminals.
+Mount the TP4056 charger and protection board with its USB charger connector accessible through the enclosure.
+Connect the battery to TP4056 B+ and B-. Then, connect TP4056 OUT+ to the main toggle switch, while OUT- connects to controller ground.
+Provide the switched positive line and TP4056 ground as the input to the 5V boost converter.
+Adjust the converter to 5.0V using the multimeter. Its output is powering the Black Pill board, controller ESP32, and TFT.
+Adhesive on the flat surface of both PCBs securely fixed them in the enclosure without blocking their connectors and solder pads.
 
-#### 2. Controller power system
+3. Controller boards and antenna
+Position the Black Pill board right behind the USB opening of the enclosure, so that the connector is accessible even when the case is closed.
+Apply a small amount of superglue to the flat underside of the board to hold it in place without covering the USB connector and solder pads.
+Mount the controller ESP32 right to the left of the Black Pill board using adhesive on its flat side.
+Both boards connected to the regulated 5V output and common controller ground.
+The UART connection runs from Black Pill GP12 TX to ESP32 GPIO16 RX and from Black Pill GP13 RX to ESP32 GPIO17 TX.
+Install the U.FL antenna, route its cable through the antenna opening, and insert the Plex antenna connector into its external position.
 
-1. Fix the 450 mAh salvaged vape cell in its compartment with hot glue applied away from the cell terminals.
-2. Mount the TP4056 charging and protection board with its USB charging connector accessible from the enclosure.
-3. The battery connected to TP4056 `B+` and `B-`. TP4056 `OUT+` passed through the main toggle switch, while `OUT-` joined controller ground.
-4. The switched positive line and TP4056 ground fed the 5 V boost converter.
-5. Set the converter to 5.0 V with a multimeter. Its output powers the Black Pill board, controller ESP32, and TFT.
-6. Adhesive on the insulated flat sides held the TP4056 and boost converter in place without covering their connectors or solder pads.
+4. Buttons
+Insert the pushbutton into its enclosure hole and secure it with superglue.
+One terminal from each pushbutton forms the daisy-chained common ground bus.
+Other terminals are connected to GP0 through GP5 for arm, disarm, and trim; GP8 and GP9 for throttle adjustment; and GP10 and GP11 for claw direction.
+Left joystick pushbutton is connected to GP14 for sensitivity down, while the right one connects to GP15 for sensitivity up.
 
-#### 3. Controller boards and antenna
+5. Joysticks
+Secure each joystick in its four mounting holes in the enclosure with 10 mm M3 screws and nuts.
+Both joysticks' VCC pins connected to the Black Pill 3.3V output, while grounds are connected to common ground.
+Analog axes are connected as left X to GP26/ADC0, left Y to GP27/ADC1, right Y to GP28/ADC2, and right X to the exposed GP29/ADC3 pin.
+Joystick push switches are connected to GP14 and GP15.
 
-1. Place the Black Pill board directly behind the enclosure's USB opening, leaving its connector accessible with the case closed.
-2. A thin layer of superglue on the flat underside held the board without covering the USB connector or solder pads.
-3. Mount the controller ESP32 immediately to the left of the Black Pill board with adhesive on its flat side.
-4. Both boards connected to the regulated 5 V output and common controller ground.
-5. The UART connection ran from Black Pill GP12 TX to ESP32 GPIO16 RX and from Black Pill GP13 RX to ESP32 GPIO17 TX.
-6. Attach the U.FL antenna, route its cable through the antenna opening, and seat the Plex antenna connector in its external position.
+6. TFT display
+Solder the controller ESP32 to the TFT as CS GPIO15, DC GPIO2, RST GPIO4, SCLK GPIO18, MOSI GPIO23, MISO GPIO19, touch CS GPIO21, and touch IRQ GPIO22.
+TFT power connected to the regulated 5V rail, while the TFT ground connects to the common controller ground.
+Insert the TFT in the front opening, secure it with M3 x 25 mm screws, and route its wires around the joystick mechanism.
 
-#### 4. Buttons
-
-1. Insert each pushbutton into its enclosure opening and fix it with superglue.
-2. One terminal from every pushbutton formed a daisy-chained common-ground bus.
-3. The remaining terminals connected to GP0 through GP5 for arm, disarm, and trim; GP8 and GP9 for throttle adjustment; and GP10 and GP11 for claw direction.
-4. The left joystick pushbutton connected to GP14 for sensitivity down, and the right joystick pushbutton connected to GP15 for sensitivity up.
-
-#### 5. Joysticks
-
-1. Mount each joystick through its four enclosure holes with 10 mm M3 screws and nuts.
-2. Both joystick VCC pins connected to the Black Pill's 3.3 V output, and both grounds joined common ground.
-3. The analog axes connected as left X to GP26/ADC0, left Y to GP27/ADC1, right Y to GP28/ADC2, and right X to the exposed GP29/ADC3 pin.
-4. The two joystick push switches connected to GP14 and GP15.
-
-#### 6. TFT display
-
-1. Solder the controller ESP32 to the TFT as CS GPIO15, DC GPIO2, RST GPIO4, SCLK GPIO18, MOSI GPIO23, MISO GPIO19, touch CS GPIO21, and touch IRQ GPIO22.
-2. TFT power connected to the regulated 5 V rail, and TFT ground joined common controller ground.
-3. Place the TFT in the front opening, secure it with M3 x 25 mm screws, and route its wiring around the joystick mechanisms.
-
-#### 7. Controller completion
-
-1. Inspect the wiring, common-ground bus, and 5.0 V boost-converter output before the first startup.
-2. The first startup confirmed the Black Pill link LED, TFT dashboard, joysticks, buttons, UART bridge, and ESP-NOW connection.
-3. Test arm and throttle control while the aircraft propellers are removed.
-4. Arrange the remaining wires clear of the joystick mechanisms and enclosure edges.
-5. Four M3 x 25 mm screws secured the top lid and completed the controller.
+7. Controller assembly
+Check the wiring, common ground bus, and 5.0V boost converter output before the first startup.
+First startup verified Black Pill link LED, TFT dashboard, joysticks, buttons, UART bridge, and ESP-NOW communication.
+Test arm and throttle control when the aircraft propellers are removed.
+Route the rest of the wires in the clearance from joystick mechanisms and enclosure edges.
+Four M3 x 25 mm screws secured the top lid and finished the controller assembly.
 
 ## Controller pinout
 
@@ -402,10 +387,10 @@ Note that I am using a black pill pico with 4 ADC inputs instead of 3 like the n
 Each leg has a cup-shaped end which holds the payload.
 All four legs make a compact spider-leg mechanism:
 
-1. Legs spread from the center creating clearance around the payload.
+1. Legs spread from the center creating area around the payload.
 2. All four legs move out from under the motors.
 3. Cup-shaped ends of legs converge from four sides to the payload.
-4. Four contact points retain and stabilize the payload under the airframe.
+4. Four contact points grip the payload under the drone.
 
 
 ## Battery and power system
@@ -417,9 +402,9 @@ I used a parallel 4s setup but it really isn't needed and you can use one for mo
 | Cell count                | 4S                                              |
 | Nominal bus voltage       | 14.8 V                                          |
 | Fully charged bus voltage | 16.8 V                                          |
-| Standard packs            | 2 x 1500 mAh = 3000 mAh                         |
-| Alternate packs           | 2 x 1550 mAh = 3100 mAh                         |
-| Connection                | Parallel: voltage remains 4S and capacities add |
+| Standard packs            | 3000 mAh                         |
+| Alternate packs           | 3100 mAh                         |
+| Connection                | Parallel |
 | Main connector            | XT60                                            |
 
 
