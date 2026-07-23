@@ -2,22 +2,14 @@
 
 ![Claw Drone](https://cdn.hackclub.com/019f14cf-6d57-7323-a0e8-c7fb3de276a7/Screenshot%202026-06-29%20151536.png)
 
-Claw Drone is a custom payload quadcopter with four continuous-rotation claw
-servos to fly, carry, and manipulate objects. It has a handheld controller with
+This is a payload quadcopter with four continuous-rotation claw
+servos to grab objects. I build a custom controller with
 two joysticks, trim buttons, a TFT dashboard, and direct claw controls.
-Pilot commands are sent via ESP-NOW Long Range to the aircraft, where an ESP32
-converts them to CRSF for the Betaflight flight controller and drives all
-four servos.
+The transmitter uses ESPNOW long range to send CRSF commands at 200hz, where another RX es32 onboard converts them into CRSF for the FC to interpret.
 
-This repository holds the mechanical CAD and complete custom firmware for the
-controller and aircraft. Betaflight runs on standard firmware, so it is not
-included here.
+The CAD, BOM, and FIRMWARE for both the controller and the drone are in this repo
 
-The project started as an attempt to make a cheap drone with an ESP32 flight
-controller and low-cost ESCs. The fourth prototype crashed a few times and it
-was decided to move flight-critical controls to a conventional Betaflight
-stack. The experimental components – a four-leg claw, ESP-NOW radio link, CRSF
-bridge, telemetry, and custom transmitter – are still custom.
+This project started with an esp32 as the FC, but later changed to using a conventional ESC+FC stack.
 
 ## Demo
 
@@ -43,13 +35,10 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
                                 ESC and motors
 ```
 
-The controller ESP32 manages the 320x240 TFT dashboard and hosts the Wi-Fi
-servo-control web page. The drone ESP32 sends CRSF battery telemetry to the
-controller via the same ESP-NOW connection.
 
 ## Wiring schematics
 
-The editable KiCad projects and electrical-rule-check reports are available in the [`Schematics`](Schematics) folder. The diagrams use matching net labels to show connections without long crossing wires.
+
 
 ### Handheld controller schematic
 
@@ -60,7 +49,7 @@ The editable KiCad projects and electrical-rule-check reports are available in t
 
 ![Aircraft wiring schematic](Pictures/Claw_Drone_Schematic.png)
 
-The aircraft schematic covers the two parallel 4S packs, F405/45 A flight stack, four motors, F405 BEC-powered ESP32, CRSF UART, XL4005 claw-servo rail, four continuous-rotation SG90 servos, and FPV camera system. Open the editable [`drone.kicad_sch`](Schematics/Drone/drone.kicad_sch) file in KiCad.
+
 
 ## Repository layout
 
