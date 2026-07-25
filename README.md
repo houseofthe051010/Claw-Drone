@@ -52,46 +52,7 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
 
 ## Bill of materials
 
-
-### Aircraft
-
-| Quantity | Part | Link | Price |
-| -------: | ---- | ---- | ----: |
-| 1 | FPV quadcopter frame | [AliExpress](https://www.aliexpress.us/item/3256811569379527.html) | $17.06 |
-| 1 | Flight-controller and ESC stack | [AliExpress](https://www.aliexpress.us/item/3256808946065124.html) | $49.63 |
-| 3 | Brushless motor, 2306 2450 KV | [AliExpress](https://www.aliexpress.us/item/3256812458735650.html) | $46.02 used (3 of 4-pack at $61.36) |
-| 1 | Brushless motor, 2306 2500 KV | [AliExpress](https://www.aliexpress.us/item/3256804750595457.html) | $12.87 |
-| 1 set | Propellers | [AliExpress](https://www.aliexpress.us/item/2255801043927518.html) | $15.25 (12-pair pack; includes spares) |
-| 2 | Flight battery | [AliExpress](https://www.aliexpress.us/item/3256812540292605.html) | $30.34 used (2 at $15.17 each) |
-| 1 | Parallel battery harness | [AliExpress](https://www.aliexpress.us/item/3256807605726245.html) | $1.77 |
-| 1 | Drone ESP32 board | [AliExpress](https://www.aliexpress.us/item/3256808984038785.html) | $4.84 |
-| 4 | Claw servo | [AliExpress](https://www.aliexpress.us/item/3256809795714797.html) | $3.63 used (4 of 5-pack at $4.54) |
-| 1 | Servo regulator | [AliExpress](https://www.aliexpress.us/item/3256806558389509.html) | $1.46 |
-| 1 | Servo-rail capacitor | [AliExpress](https://www.aliexpress.us/item/3256806095708994.html) | $0.05 used (1 of 20-pack at $0.99) |
-| 1 | Camera module | [AliExpress](https://www.aliexpress.us/item/3256810060131517.html) | $25.90 |
-| 1 set | Claw parts and mounts | [PLA filament](https://www.aliexpress.us/item/3256806989098121.html) | $2.54 estimated (250 g of $10.14/kg PLA) |
-| As needed | Power and signal wiring | [AliExpress](https://www.aliexpress.us/item/3256809610137308.html) | $5.49 allowance |
-| As needed | Connectors and hardware | [AliExpress](https://www.aliexpress.us/item/3256804089626824.html) | $3.81 assortment kit |
-
-### Handheld controller
-
-| Quantity | Part | Link | Price |
-| -------: | ---- | ---- | ----: |
-| 1 | Black Pill Pico-compatible board | [AliExpress](https://www.aliexpress.us/item/3256805910466139.html) | $4.35 |
-| 1 | Controller ESP32 board | [AliExpress](https://www.aliexpress.us/item/3256808984038785.html) | $4.84 |
-| 1 | TFT/touch module | [AliExpress](https://www.aliexpress.us/item/2255800128937536.html) | $10.87 |
-| 2 | Joystick module | [AliExpress](https://www.aliexpress.us/item/3256809884616435.html) | $1.15 used (2 of 10-pack at $5.76) |
-| 10 | Momentary pushbutton | [AliExpress](https://www.aliexpress.us/item/3256801710165519.html) | $3.32 (10-pack) |
-| 1 | Controller battery | [AliExpress](https://www.aliexpress.us/item/3256809090690409.html) | $4.24 |
-| 1 | Boost converter | [AliExpress](https://www.aliexpress.us/item/3256810344563800.html) | $0.99 |
-| 1 | Battery charger and protection board | [AliExpress](https://www.aliexpress.us/item/3256808777213556.html) | $0.20 used (1 of 5-pack at $0.99) |
-| 1 | Main power switch | [AliExpress](https://www.aliexpress.us/item/3256807619399290.html) | $0.16 used (1 of 10-pack at $1.64) |
-| 1 | Bulk capacitor | [AliExpress](https://www.aliexpress.us/item/2251832671851361.html) | $0.10 used (1 of 10-pack at $0.99) |
-| 1 | Decoupling capacitor | [AliExpress](https://www.aliexpress.us/item/3256811560978404.html) | $0.01 used (1 of 100-pack at $0.99) |
-| 1 | Controller enclosure | [PLA filament](https://www.aliexpress.us/item/3256806989098121.html) | $3.04 estimated (300 g of $10.14/kg PLA) |
-| As needed | Wiring and hardware | [AliExpress](https://www.aliexpress.us/item/3256809610137308.html) | $5.49 allowance |
-
-The controller uses a Black Pill Pico-compatible board that exposes GP29/ADC3. The right joystick X axis connects directly to GP29/ADC3 exactly as defined in the firmware.
+Look in the repo BOM CSV for the BOM.
 
 ## Assembly process
 
@@ -158,9 +119,11 @@ Mount it with M3 x 25 mm screws, and route its wires to the left of the pi pico 
 
 ## Controller pinout
 
+USE THIS WHEN BUILDING THE CONTROLLER/DRONE
+
 ### Black Pill Picoboard
 
-Note that I am using a black pill pico with 4 ADC inputs instead of 3 like the normal pi pico.
+Note that you have to be using a black pill pico with 4 ADC inputs instead of 3 like the normal pi pico.
 
 | Pico pin    | Connection             |
 | ----------- | ---------------------- |
@@ -213,45 +176,16 @@ Note that I am using a black pill pico with 4 ADC inputs instead of 3 like the n
 | GND            | GND                   |
 
 
-## Drone Frame 
-
-| Component            | Specification                                        |
-| -------------------- | ---------------------------------------------------- |
-| Base frame           | Standard 5-inch FPV quadcopter frame                 |
-| Flight stack         | Aero Selfie F405 with 45 A ESC                       |
-| Motors 1-3           | 2306, 2450 KV                                        |
-| Motor 4              | 2306, 2500 KV                                        |
-| Propeller diameter   | 5 inches                                             |
-| Propeller type       | Low-to-moderate-pitch commercial or 3D-printed props |
-| Claw servos          | 4 x continuous-rotation SG90                         |
-| Servo regulator      | XL4005 adjusted to 4.5 V                             |
-| Main power connector | XT60                                                 |
 
 
 ## Four-leg claw system
 
-Each leg has a cup-shaped end which holds the payload.
-All four legs make a compact spider-leg mechanism:
+You have to use the self tapping screws that came with the sg90 to mount them.
 
 1. Legs spread from the center creating area around the payload.
 2. All four legs move out from under the motors.
-3. Cup-shaped ends of legs converge from four sides to the payload.
-4. Four contact points grip the payload under the drone.
 
 
-## Battery and power system
-
-I used a parallel 4s setup but it really isn't needed and you can use one for more flight time by swapping them.
-
-| Battery configuration     | System value                                    |
-| ------------------------- | ----------------------------------------------- |
-| Cell count                | 4S                                              |
-| Nominal bus voltage       | 14.8 V                                          |
-| Fully charged bus voltage | 16.8 V                                          |
-| Standard packs            | 3000 mAh                         |
-| Alternate packs           | 3100 mAh                         |
-| Connection                | Parallel |
-| Main connector            | XT60                                            |
 
 
 
@@ -282,7 +216,7 @@ The FC did not have enough motor outputs to drive servos so I used the onboard E
 
 Servos are powered by the XL4005 buck converter at 4.5V
 
-## ESP-NOW radio configuration
+## Setting up the code
 
 
 Every ESP32 has different values for this: 
@@ -338,12 +272,7 @@ First design concept was X-frame design with 5-DoF arm.
 It has been dropped because of the arm mass. Second design concept was a
 frame with electronics placed near its perimeter, and an opening in its center like a DONUT.
 Through this opening, servo-controlled rope and spring mechanism were going
-to clamp the payload. This was abandoned though:
-
-* Too close placement of the gripper to the airframe made it possible to
-  grasp a payload when the drone was very close to it.
-* Propellers' downwash was restricted by frame and gripper structures,
-  reducing thrust and efficiency.
+to clamp the payload. This was abandoned though as it interfered with the rotor thrust.
 
 
 ### 2. Lightweight claw redesign
