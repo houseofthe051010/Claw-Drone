@@ -15,9 +15,3 @@ diagnostics/
   pico_joystick_button_test/
     main.py              Standalone Pico input test
 ```
-
-Both ESP32 projects use ESP-IDF through PlatformIO and include their own
-`platformio.ini`, CMake files, and `sdkconfig.defaults`. The Pico programs use
-MicroPython.
-
-
