@@ -50,61 +50,6 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
 ![Aircraft wiring schematic](Pictures/Claw_Drone_Schematic.png)
 
 
-
-## Design and build process
-
-### 1. Early arm concepts
-
-First design concept was traditional X-frame design with 5-DoF arm.
-It has been dropped because of the arm mass. Second design concept was a
-frame with electronics placed near its edge, and an opening in its center.
-Through this opening, servo-controlled rope and spring mechanism were going
-to clamp the payload. During prototyping of this concept, there were
-identified two main disadvantages:
-
-* Too close placement of the gripper to the airframe made it possible to
-  grasp a payload when the drone was very close to it.
-* Propellers' downwash was restricted by frame and gripper structures,
-  reducing thrust and efficiency.
-
-
-### 2. Lightweight claw redesign
-
-I had four servos underneath, and initially a 5 dof arm as the claw.
-
-![Early claw prototype](https://cdn.hackclub.com/019ec355-8233-7346-a96f-261aa930281d/Screenshot%202026-06-13%20193231.png)
-
-![Redesigned claw CAD](https://cdn.hackclub.com/019ec35d-74e1-70d2-9615-82af2e30d687/image.png)
-
-### 3. ESP32 flight-controller experiment
-
-I used a esp32 supermini S3 but there were problems with the ESC connection and FC espnow connection leading me to abondon it.
-
-![ESP32 and ESC development](https://cdn.hackclub.com/019ecc0f-3c6b-7371-a2ad-fd34ee2507ea/image.png)
-
-### 4. Moving flight control to Betaflight
-
-Switched from ESP32 FC + cheap rc airplane ESCs to conventional drone stack.
-
-![Flight-controller stack](https://cdn.hackclub.com/019ed383-7922-7b6d-8e36-17c1cc8e7390/image.png)
-
-
-### 5. Building the custom transmitter
-
-NRF24L01 were used at first but I switched to ESPNOW as its less wiring and reliable.
-
-![Transmitter wiring](https://cdn.hackclub.com/019f1057-e119-775f-ac5c-63eac06e99c7/image.png)
-
-![Completed transmitter](https://cdn.hackclub.com/019f1058-59bb-790c-9c65-282e0644dde1/image.png)
-
-### 6. Final assembly
-
-Everything connected together
-
-![Final electronics assembly](https://cdn.hackclub.com/019f148b-7dcf-7bab-8370-dddf9c211c3d/image.png)
-
-![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
-
 ## Bill of materials
 
 
@@ -422,3 +367,59 @@ save
 | CH6 / AUX2   | Link-active indication |
 
 ARM mode uses AUX1.
+
+
+
+
+## Design and build process
+
+### 1. Early arm concepts
+
+First design concept was X-frame design with 5-DoF arm.
+It has been dropped because of the arm mass. Second design concept was a
+frame with electronics placed near its perimeter, and an opening in its center like a DONUT.
+Through this opening, servo-controlled rope and spring mechanism were going
+to clamp the payload. This was abandoned though:
+
+* Too close placement of the gripper to the airframe made it possible to
+  grasp a payload when the drone was very close to it.
+* Propellers' downwash was restricted by frame and gripper structures,
+  reducing thrust and efficiency.
+
+
+### 2. Lightweight claw redesign
+
+I had four servos underneath, and initially a 5 dof arm as the claw.
+
+![Early claw prototype](https://cdn.hackclub.com/019ec355-8233-7346-a96f-261aa930281d/Screenshot%202026-06-13%20193231.png)
+
+![Redesigned claw CAD](https://cdn.hackclub.com/019ec35d-74e1-70d2-9615-82af2e30d687/image.png)
+
+### 3. ESP32 flight-controller experiment
+
+I used a esp32 supermini S3 but there were problems with the ESC connection and FC espnow connection leading me to abondon it.
+
+![ESP32 and ESC development](https://cdn.hackclub.com/019ecc0f-3c6b-7371-a2ad-fd34ee2507ea/image.png)
+
+### 4. Moving flight control to Betaflight
+
+Switched from ESP32 FC + cheap rc airplane ESCs to conventional drone stack.
+
+![Flight-controller stack](https://cdn.hackclub.com/019ed383-7922-7b6d-8e36-17c1cc8e7390/image.png)
+
+
+### 5. Building the custom transmitter
+
+NRF24L01 were used at first but I switched to ESPNOW as its less wiring and reliable.
+
+![Transmitter wiring](https://cdn.hackclub.com/019f1057-e119-775f-ac5c-63eac06e99c7/image.png)
+
+![Completed transmitter](https://cdn.hackclub.com/019f1058-59bb-790c-9c65-282e0644dde1/image.png)
+
+### 6. Final assembly
+
+Everything connected together
+
+![Final electronics assembly](https://cdn.hackclub.com/019f148b-7dcf-7bab-8370-dddf9c211c3d/image.png)
+
+![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
