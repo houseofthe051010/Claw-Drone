@@ -221,6 +221,11 @@ Servos are powered by the XL4005 buck converter at 4.5V
 
 ## Setting up the code
 
+Flash using micropython for the rpi, and ESP-IDF for the esp32 co-processor
+
+On the drone use ESP-IDF, the flight controller uses betaflight
+
+The code is in the repo folder
 
 Every ESP32 has different values for this: 
 
