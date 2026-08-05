@@ -62,6 +62,7 @@ Use [Building Your First 5-Inch FPV Drone: A Complete Step-by-Step Guide](https:
 ### Aircraft build
 
 1. Build it like a normal FPV frame, like the one in the video above
+  * If you have a commercial FPV frame that will work, otherwise print the frame pieces in the INDIVIDUAL STLs
 
 2. Parallel battery connection
  
@@ -74,6 +75,8 @@ Also, for the camera you won't be using that 5.8ghz or DJI O4 mini. You will use
 
 4. Four-servos claw
 3D print four SG90 mount holders and install one beneath each motor holder.
+ * This is inside the Additional Attachment individual STLs, print the mirrored and normal servo claw attachment twice (4 total)
+ * Also print the servo mounts to mount them with the motor mounts
 Install the 10mm M3s to mount them and secure each SG90 servo to its printed holder with the self-tapping screws.
 Route the servo cables along the arms to the inside. Secure them outside the motor and propeller area with zip ties.
 Connect all four servo positive wires to XL4005 OUT+, and all four grounds to OUT-. Connect the PWM control lines as servo 1 – GPIO16, servo 2 – GPIO17, servo 3 – GPIO5, and servo 4 – GPIO18.
@@ -87,7 +90,7 @@ Make sure to set the voltage to 4.5v Connect all four servos to a common gnd wit
 ### Handheld controller build
 
 1. Enclosure preparation
-Print everything, get soldering iron, flux, and a ton of thin 32AWG wire
+Print all of the INDIVIDUAL STLs, get soldering iron, flux, and a ton of thin 32AWG wire
 
 2. Controller power supply
 Mount the LIPO cell with glue.
