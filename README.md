@@ -52,7 +52,34 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
 
 ## Bill of materials
 
-Look in the repo BOM CSV for the BOM.
+| Assembly   |  Quantity | Part                          | Purchase Link                                                      |      Estimated Price |
+| ---------- | --------: | ----------------------------- | ------------------------------------------------------------------ | -------------------: |
+| Aircraft   |         1 | Frame                         | [AliExpress](https://www.aliexpress.us/item/3256811569379527.html) |               $17.06 |
+| Aircraft   |         1 | FC + ESC stack                | [AliExpress](https://www.aliexpress.us/item/3256808946065124.html) |               $49.63 |
+| Aircraft   |         4 | Brushless motors              | [AliExpress](https://www.aliexpress.us/item/3256812458735650.html) |               $61.36 |
+| Aircraft   |     1 set | Propellers                    | [AliExpress](https://www.aliexpress.us/item/2255801043927518.html) |               $15.25 |
+| Aircraft   |         2 | Flight batteries              | [AliExpress](https://www.aliexpress.us/item/3256812540292605.html) |               $30.34 |
+| Aircraft   |         1 | XT60 connectors               | [AliExpress](https://www.aliexpress.us/item/3256807605726245.html) |                $1.77 |
+| Aircraft   |         1 | ESP32                         | [AliExpress](https://www.aliexpress.us/item/3256808984038785.html) |                $4.84 |
+| Aircraft   |         4 | Servos                        | [AliExpress](https://www.aliexpress.us/item/3256809795714797.html) |           $3.63 used |
+| Aircraft   |         1 | XL4005 buck converter         | [AliExpress](https://www.aliexpress.us/item/3256806558389509.html) |                $1.46 |
+| Aircraft   |         1 | Camera                        | [AliExpress](https://www.aliexpress.us/item/3256810060131517.html) |               $25.90 |
+| Aircraft   |         1 | 3D-printing allowance         | [AliExpress](https://www.aliexpress.us/item/3256806989098121.html) |                $2.54 |
+| Aircraft   | As needed | Wiring                        | [AliExpress](https://www.aliexpress.us/item/3256809610137308.html) |      $5.49 allowance |
+| Aircraft   | As needed | Connectors                    | [AliExpress](https://www.aliexpress.us/item/3256804089626824.html) | $3.81 assortment kit |
+| Controller |         1 | Raspberry Pi Pico             | [AliExpress](https://www.aliexpress.us/item/3256805910466139.html) |                $4.35 |
+| Controller |         1 | ESP32                         | [AliExpress](https://www.aliexpress.us/item/3256808984038785.html) |                $4.84 |
+| Controller |         1 | TFT touchscreen display       | [AliExpress](https://www.aliexpress.us/item/2255800128937536.html) |               $10.87 |
+| Controller |         2 | Joystick modules              | [AliExpress](https://www.aliexpress.us/item/3256809884616435.html) |                $5.76 |
+| Controller |        10 | Pushbuttons                   | [AliExpress](https://www.aliexpress.us/item/3256801710165519.html) |                $3.32 |
+| Controller |         1 | Controller battery            | [AliExpress](https://www.aliexpress.us/item/3256809090690409.html) |                $4.24 |
+| Controller |         1 | Boost converter               | [AliExpress](https://www.aliexpress.us/item/3256810344563800.html) |                $0.99 |
+| Controller |         1 | TP4056 charger module         | [AliExpress](https://www.aliexpress.us/item/3256808777213556.html) |           $0.20 used |
+| Controller |         1 | Power switch                  | [AliExpress](https://www.aliexpress.us/item/3256807619399290.html) |           $0.16 used |
+| Controller |         1 | Bulk capacitor                | [AliExpress](https://www.aliexpress.us/item/2251832671851361.html) |           $0.10 used |
+| Controller |         1 | Decoupling capacitor          | [AliExpress](https://www.aliexpress.us/item/3256811560978404.html) |           $0.01 used |
+| Controller |         1 | Controller filament allowance | [AliExpress](https://www.aliexpress.us/item/3256806989098121.html) |                $3.04 |
+| Controller | As needed | Wiring                        | [AliExpress](https://www.aliexpress.us/item/3256809610137308.html) |      $5.49 allowance |
 
 ## Assembly process
 
