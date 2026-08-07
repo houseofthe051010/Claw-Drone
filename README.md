@@ -85,6 +85,13 @@ Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
 
 ## Assembly process
 
+### Print settings
+
+The prototype was printed in PETG on an Anycubic Kobra S1 using 100% infill,
+10 walls, and a 0.2 mm layer height. The printable files are in
+[`CAD/Individual STL files`](CAD/Individual%20STL%20files), with matching STEP
+exports in [`CAD/Individual STEP files`](CAD/Individual%20STEP%20files).
+
 Use [Building Your First 5-Inch FPV Drone: A Complete Step-by-Step Guide](https://blog.uavmodel.com/building-your-first-5-inch-fpv-drone-a-complete-step-by-step-guide/) for the standard FPV frame/motor/ESC+FC stack guide.
 
 
