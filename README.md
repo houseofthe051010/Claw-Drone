@@ -7,6 +7,8 @@ servos to grab objects. I build a custom controller with
 two joysticks, trim buttons, a TFT dashboard, and direct claw controls.
 The transmitter uses ESPNOW long range to send CRSF commands at 200hz, where another RX es32 onboard converts them into CRSF for the FC to interpret.
 
+I built this as a way to further myself in the knowledge of drones and aerial payload delivery.
+
 The CAD, BOM, and FIRMWARE for both the controller and the drone are in this repo
 
 This project started with an esp32 as the FC, but later changed to using a conventional ESC+FC stack.
@@ -346,3 +348,10 @@ Everything connected together
 ![Final electronics assembly](https://cdn.hackclub.com/019f148b-7dcf-7bab-8370-dddf9c211c3d/image.png)
 
 ![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
+
+## What I would change next time\
+
+* Improve the claw mehanism
+* Have a single strong motor for the claw
+* Increase drone size
+* Have a much more robust FC
