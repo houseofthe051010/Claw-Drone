@@ -257,7 +257,26 @@ Servos are powered by the XL4005 buck converter at 4.5V
 
 ## Setting up the code
 
-Flash using micropython for the rpi, and ESP-IDF for the esp32 co-processor
+Use the PlatformIO extension in VScode to flash, configure this repo with it and run this in terminal:
+
+### Flashing the controller ESP32
+
+```sh
+cd Code/controller/esp32_tx
+pio run -t upload
+pio device monitor
+```
+
+### Flashing the drone ESP32
+
+```sh
+cd Code/drone/esp32_rx
+pio run -t upload
+pio device monitor
+```
+
+
+Flash using micropython for the rpi, flash it with thonny using main.py code from Code/controller/pico/main.py
 
 On the drone use ESP-IDF, the flight controller uses betaflight
 
