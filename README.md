@@ -17,9 +17,21 @@ This project started with an esp32 as the FC, but later changed to using a conve
 
 ## Demo
 
-[Watch the competition flight demo on YouTube](https://youtube.com/shorts/Rw3jiggKQBY)
+[Watch the flight demo on YouTube](https://youtube.com/shorts/Rw3jiggKQBY)
 
 
+## Wiring schematics
+
+
+
+### Handheld controller schematic
+
+![Handheld controller wiring schematic](Pictures/Controller_Schematic.png)
+
+
+### Aircraft schematic
+
+![Aircraft wiring schematic](Pictures/Claw_Drone_Schematic.png)
 
 
 ## Bill of materials
