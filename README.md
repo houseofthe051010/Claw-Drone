@@ -26,12 +26,12 @@ This project started with an esp32 as the FC, but later changed to using a conve
 
 ### Handheld controller schematic
 
-![](Pictures/Controller_Schematic.png)
+![](Pictures/Controller1_Schematic.png)
 
 
 ### Aircraft schematic
 
-![](Pictures/Claw_Drone_Schematic.png)
+![](Pictures/Claw_Drone1_Schematic.png)
 
 
 ## Bill of materials
