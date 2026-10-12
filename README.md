@@ -2,12 +2,12 @@
 
 ![Claw Drone](https://cdn.hackclub.com/019f14cf-6d57-7323-a0e8-c7fb3de276a7/Screenshot%202026-06-29%20151536.png)
 
-This is a payload quadcopter with four continuous-rotation claw
-servos to grab objects. I build a custom controller with
-two joysticks, trim buttons, a TFT dashboard, and direct claw controls.
-The transmitter uses ESPNOW long range to send CRSF commands at 200hz, where another RX es32 onboard converts them into CRSF for the FC to interpret.
+(Note for reviewer: This project is from macondo, and at the time I built it lapse didn't exist for me to record my builds).
+This is a fpv drone with four claw
+servos to grab objects. I built a custom controller but better with
+similar to a normal radiomaster using espnow to drive it. 
 
-I built this as a way to further myself in the knowledge of drones and aerial payload delivery.
+I built this as a way to further myself in the knowledge of drones and aerial payloads and to use it in a drone competition.
 
 The CAD, BOM, and FIRMWARE for both the controller and the drone are in this repo
 
@@ -16,26 +16,6 @@ This project started with an esp32 as the FC, but later changed to using a conve
 ## Demo
 
 [Watch the competition flight demo on YouTube](https://youtube.com/shorts/Rw3jiggKQBY)
-
-## System architecture
-
-```text
-Joysticks and buttons
-        |
-        v
-Black Pill Pico-compatible board -- UART 115200 --> Controller ESP32-WROOM
-                                           |
-                                           | ESP-NOW LR, channel 6
-                                           v
-                                    Drone ESP32-WROOM
-                                      |           |
-                           CRSF UART3 |           | 4 x 50 Hz PWM
-                                      v           v
-                              Betaflight FC    Claw servos
-                                      |
-                                      v
-                                ESC and motors
-```
 
 
 ## Wiring schematics
