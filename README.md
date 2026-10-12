@@ -22,7 +22,7 @@ This project started with an esp32 as the FC, but later changed to using a conve
 
 ## Wiring schematics
 
-
+This is not a pcb, it is a pinout wiring of the drone and the controller, not a gerber/pcb output
 
 ### Handheld controller schematic
 
