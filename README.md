@@ -2,6 +2,8 @@
 
 ![Claw Drone](https://cdn.hackclub.com/019f14cf-6d57-7323-a0e8-c7fb3de276a7/Screenshot%202026-06-29%20151536.png)
 
+Forge link: https://forge.hackclub.com/projects/3733
+
 (Note for reviewer: This project is from macondo, and at the time I built it lapse didn't exist for me to record my builds).
 This is a fpv drone with four claw
 servos to grab objects. I built a custom controller but better with
@@ -67,7 +69,7 @@ This project started with an esp32 as the FC, but later changed to using a conve
 
 ### Print settings
 
-The prototype was printed in PETG on an Anycubic Kobra S1 using 100% infill,
+The materials was printed in PETG on an Anycubic Kobra S1 using 100% infill,
 10 walls, and a 0.2 mm layer height. The printable files are in
 [`CAD/Individual STL files`](CAD/Individual%20STL%20files), with matching STEP
 exports in [`CAD/Individual STEP files`](CAD/Individual%20STEP%20files).
@@ -75,7 +77,8 @@ exports in [`CAD/Individual STEP files`](CAD/Individual%20STEP%20files).
 Use [Building Your First 5-Inch FPV Drone: A Complete Step-by-Step Guide](https://blog.uavmodel.com/building-your-first-5-inch-fpv-drone-a-complete-step-by-step-guide/) for the standard FPV frame/motor/ESC+FC stack guide.
 
 
-### Aircraft build
+### Aircraft build 
+Refer to my forge journal for more info and pictures of the build
 
 1. Build it like a normal FPV frame, like the one in the video above
   * If you have a commercial FPV frame that will work, otherwise print the frame pieces in the INDIVIDUAL STLs
@@ -104,6 +107,9 @@ Make sure to set the voltage to 4.5v Connect all four servos to a common gnd wit
 
 
 ### Handheld controller build
+
+Refer to my forge journal for more info and pictures of the build
+
 
 1. Enclosure preparation
 Print all of the INDIVIDUAL STLs, get soldering iron, flux, and a ton of thin 32AWG wire
@@ -315,7 +321,7 @@ First design concept was X-frame design with 5-DoF arm.
 It has been dropped because of the arm mass. Second design concept was a
 frame with electronics placed near its perimeter, and an opening in its center like a DONUT.
 Through this opening, servo-controlled rope and spring mechanism were going
-to clamp the payload. This was abandoned though as it interfered with the rotor thrust.
+to clamp the payload. This was also dropped as it interfered with the rotor thrust.
 
 
 ### 2. Lightweight claw redesign
@@ -355,9 +361,9 @@ Everything connected together
 
 ![Drone with claw installed](https://cdn.hackclub.com/019f148d-098e-77a8-bafd-c0c3c1cc8c31/image.png)
 
-## What I would change next time\
+## What I would change next time
 
-* Improve the claw mehanism
+* Improve the claw mechanism
 * Have a single strong motor for the claw
 * Increase drone size
-* Have a much more robust FC
+
